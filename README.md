@@ -1,3 +1,7 @@
+```
+Warning: this project's current state migh be unsafe and generate some ilegal issues. Use it responsibly.
+```
+
 webscraper
 
 ## Abstract
