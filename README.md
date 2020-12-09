@@ -4,7 +4,7 @@ webscraper
 
 The *core* project contains the main definitions for how plugins should behave but they are mostly free to do what it's needed in order to maintain their own capabilities.
 
-The initial plugins (20minutos, ABC and ElPais) are intended to iterate over a well defined list of URLs as a result of any search within the sites. And it does it pretty well and fast.
+The initial plugins (20minutos, ABC and ElPais) are intended to iterate over a well defined list of URLs as a result of any search within the sites. And it's done pretty well and fast.
 
 So fast that it can be considered as a DDoS attack. TODO: log URLs not served because of this or any other reason for a manual inspection and posterior processing.
 
