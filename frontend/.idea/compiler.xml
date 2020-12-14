@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="core" />
+        <module name="veinteminutos" />
+        <module name="postprocessing" />
+        <module name="abc" />
+        <module name="extraction" />
+        <module name="elpais" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="abc" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="elpais" target="1.8" />
+      <module name="extraction" target="1.8" />
+      <module name="frontend" target="1.8" />
+      <module name="plugins" target="1.8" />
+      <module name="postprocessing" target="1.8" />
+      <module name="veinteminutos" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

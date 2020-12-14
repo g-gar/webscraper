@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../plugins/abc/abc.iml" filepath="$PROJECT_DIR$/../plugins/abc/abc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../core/core.iml" filepath="$PROJECT_DIR$/../core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../plugins/elpais/elpais.iml" filepath="$PROJECT_DIR$/../plugins/elpais/elpais.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extraction/extraction.iml" filepath="$PROJECT_DIR$/extraction/extraction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frontend.iml" filepath="$PROJECT_DIR$/frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../plugins/plugins.iml" filepath="$PROJECT_DIR$/../plugins/plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postprocessing/postprocessing.iml" filepath="$PROJECT_DIR$/postprocessing/postprocessing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../plugins/veinteminutos/veinteminutos.iml" filepath="$PROJECT_DIR$/../plugins/veinteminutos/veinteminutos.iml" />
+    </modules>
+  </component>
+</project>
