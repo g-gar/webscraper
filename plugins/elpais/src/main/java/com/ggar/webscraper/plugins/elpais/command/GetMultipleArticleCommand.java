@@ -37,7 +37,6 @@ public class GetMultipleArticleCommand implements Command<UrlIterator, List<Abst
 				for (AbstractArticle article : fn.apply(iterator.next())) {
 					articles.add(article);
 				}
-				log.info(String.format("Current articles No: %s\n", articles.size()));
 			});
 		}
 		

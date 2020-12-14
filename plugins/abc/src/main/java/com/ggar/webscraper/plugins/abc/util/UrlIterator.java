@@ -1,6 +1,7 @@
 package com.ggar.webscraper.plugins.abc.util;
 
 import java.net.URL;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.logging.Logger;
@@ -42,13 +43,18 @@ public class UrlIterator implements PluginUrlIterator<Document>{
 					.get();
 			result = document.select("ul#results-content > li").stream()
 					.map(e -> e.select("h2 > a.titulo").attr("href"))
-					.filter(e -> e!=null && e.trim().length() > 0)
+					.filter(e -> e != null && e.trim().length() > 0)
 					.collect(Collectors.toList()).size() > 0;
 			this.index.set(this.index.get() + 1);
 		} catch (Exception e) {
 			Logger.getLogger(Abc.class.getName()).info(String.format("Error loading url [%s]\n%s\n", url, e.getMessage()));
 			result = false;
 			this.state = UrlIterator.STOPPED;
+		}
+		try {
+			Thread.sleep(ThreadLocalRandom.current().nextInt(3000, 10000 + 1));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		return this.state && result;
 	}

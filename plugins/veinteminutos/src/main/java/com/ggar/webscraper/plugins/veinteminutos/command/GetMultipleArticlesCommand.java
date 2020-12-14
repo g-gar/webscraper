@@ -27,12 +27,11 @@ public class GetMultipleArticlesCommand implements Command<UrlIterator, List<Art
 	public List<Article> execute(UrlIterator iterator) {
 		List<Article> articles = Collections.synchronizedList(new ArrayList<Article>());
 		Function<Document, List<Article>> fn = document -> document
-				.select("section.content > article.media").stream()
-				.map(media -> media.select("figure > a").attr("href"))
-				.filter(url -> !url.equals(null) && url.trim().length() > 0)
-				.map(url -> new GetSingleArticleCommand().execute(
-						new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {
-						}))
+                .select("section.content > article.media").stream()
+                .map(media -> media.select("figure > a").attr("href"))
+                .filter(url -> !url.equals(null) && url.trim().length() > 0)
+                .map(url -> new GetSingleArticleCommand().execute(new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {
+                }))
 				.collect(Collectors.toList());
 
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
