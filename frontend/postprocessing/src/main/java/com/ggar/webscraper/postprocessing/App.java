@@ -1,18 +1,20 @@
 package com.ggar.webscraper.postprocessing;
 
-import java.nio.file.Path;
-import java.sql.Connection;
-import java.util.List;
-import java.util.logging.Logger;
+import com.ggar.stepping.core.executors.GraphExecutor;
+import com.ggar.stepping.core.strategies.DefaultGraphExecutorStrategy;
+import org.jgrapht.Graph;
 
-import com.ggar.webscraper.core.Article;
-import com.ggar.webscraper.postprocessing.command.ParseCsvCommand;
-import com.ggar.webscraper.postprocessing.command.ParseDbCommand;
+import java.util.logging.Logger;
 
 public class App {
 
     private static App instance;
-    public final static Logger log = Logger.getGlobal();
+    private final GraphExecutor graphExecutor;
+    private final static Logger log = Logger.getGlobal();
+
+    public App() {
+        this.graphExecutor = new GraphExecutor(new DefaultGraphExecutorStrategy());
+    }
 
     public static App getInstance() {
         if (instance == null) {
@@ -21,11 +23,8 @@ public class App {
         return instance;
     }
 
-    public List<Article> parse(Path... paths) {
-        return new ParseCsvCommand().execute(paths);
+    public <T, R> Graph<T, R> execute(Graph<T, R> graph) {
+        return this.graphExecutor.execute(graph);
     }
 
-    public List<Article> parse(Connection connection) {
-        return new ParseDbCommand().execute(connection);
-    }
 }

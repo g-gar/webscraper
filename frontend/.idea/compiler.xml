@@ -2,14 +2,16 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
-        <module name="veinteminutos" />
-        <module name="postprocessing" />
+        <module name="stepping-core" />
         <module name="abc" />
+        <module name="postprocessing" />
+        <module name="veinteminutos" />
         <module name="extraction" />
         <module name="elpais" />
       </profile>
@@ -22,6 +24,7 @@
       <module name="frontend" target="1.8" />
       <module name="plugins" target="1.8" />
       <module name="postprocessing" target="1.8" />
+      <module name="stepping-core" target="1.8" />
       <module name="veinteminutos" target="1.8" />
     </bytecodeTargetLevel>
   </component>
