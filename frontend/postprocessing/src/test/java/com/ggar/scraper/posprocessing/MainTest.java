@@ -1,10 +1,6 @@
 package com.ggar.scraper.posprocessing;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
+import com.ggar.webscraper.postprocessing.Main;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -12,7 +8,8 @@ import org.apache.commons.cli.Options;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ggar.webscraper.postprocessing.Main;
+import java.io.File;
+import java.util.Arrays;
 
 public class MainTest {
 
@@ -25,7 +22,7 @@ public class MainTest {
         };
 
         Main main = new Main();
-        Options options = main.configureArgsParser();
+        Options options = null;//main.configureArgsParser();
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
