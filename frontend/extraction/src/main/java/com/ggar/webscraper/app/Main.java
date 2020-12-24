@@ -1,10 +1,10 @@
 package com.ggar.webscraper.app;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import com.ggar.webscraper.core.AbstractEntity;
+import com.ggar.webscraper.core.PluginOperations;
+import com.ggar.webscraper.core.PluginParams;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,10 +15,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
-import com.ggar.webscraper.core.AbstractArticle;
-import com.ggar.webscraper.core.PluginOperations;
-import com.ggar.webscraper.core.PluginParams;
 
 public class Main {
 
@@ -32,10 +28,10 @@ public class Main {
 				new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8));
 		for (PluginParams param : parseCsvInput(Paths.get(args[0]))) {
 			log.info(String.format("Received %s\n", param));
-			List<AbstractArticle> articles = app.execute(param).parallelStream().filter(Objects::nonNull)
-					.map(e -> (AbstractArticle) e).collect(Collectors.toList());
+			List<AbstractEntity> articles = app.execute(param).parallelStream().filter(Objects::nonNull)
+					.map(e -> (AbstractEntity) e).collect(Collectors.toList());
 			String line = null;
-			for (AbstractArticle a : articles) {
+			for (AbstractEntity a : articles) {
 //				log.info(a.toString());
 				try {
 					bw.write(String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", a.getUrl(), a.getPublishedDate(),

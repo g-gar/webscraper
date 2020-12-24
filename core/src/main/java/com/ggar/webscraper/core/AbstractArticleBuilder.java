@@ -3,17 +3,17 @@ package com.ggar.webscraper.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractArticleBuilder<T extends Article> {
-	
-	protected String url, publishedDate, modifiedDate, title, summary, content, language, section;
-	protected List<String> tags, authors;
-	
-	public AbstractArticleBuilder() {
-		
-	}
-	
-	public AbstractArticleBuilder<T> setUrl(String url) {
-		this.url = url;
+public abstract class AbstractArticleBuilder<T extends Entity> {
+
+    protected String url, publishedDate, modifiedDate, title, summary, content, language, section;
+    protected List<String> tags, authors;
+
+    public AbstractArticleBuilder() {
+
+    }
+
+    public AbstractArticleBuilder<T> setUrl(String url) {
+        this.url = url;
 		return this;
 	}
 

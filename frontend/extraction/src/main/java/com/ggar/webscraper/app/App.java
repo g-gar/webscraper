@@ -9,7 +9,7 @@ import org.clapper.util.classutil.ClassFilter;
 import org.clapper.util.classutil.ClassFinder;
 import org.clapper.util.classutil.ClassInfo;
 
-import com.ggar.webscraper.core.Article;
+import com.ggar.webscraper.core.Entity;
 import com.ggar.webscraper.core.Plugin;
 import com.ggar.webscraper.core.PluginManager;
 import com.ggar.webscraper.core.PluginParams;
@@ -52,7 +52,7 @@ public class App {
         return instance;
     }
 
-    public <T extends PluginParams, A extends Article> List<A> execute(T params) {
+    public <T extends PluginParams, A extends Entity> List<A> execute(T params) {
         List<A> result = new ArrayList<>();
         for (Plugin plugin : (List<Plugin>) this.plugins.getAvaliablePlugins(params)) {
             plugin.handle(params).forEach(e -> result.add((A) e));

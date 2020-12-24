@@ -12,31 +12,32 @@ import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
 
-import com.ggar.webscraper.core.AbstractArticle;
+import com.ggar.webscraper.core.AbstractEntity;
 import com.ggar.webscraper.core.PluginParams;
 import com.ggar.webscraper.plugins.abc.Abc;
 import com.ggar.webscraper.plugins.abc.config.Operations;
 import com.ggar.webscraper.plugins.abc.util.UrlIterator;
 
-public class GetMultipleArticleCommand implements Command<UrlIterator, List<AbstractArticle>> {
+public class GetMultipleArticleCommand implements Command<UrlIterator, List<AbstractEntity>> {
 
-	private final Logger log = Logger.getLogger(Abc.class.getName());
-	
-	@Override
-	public List<AbstractArticle> execute(UrlIterator iterator) {
-		List<AbstractArticle> articles = Collections.synchronizedList(new ArrayList<AbstractArticle>());
-		Function<Document, List<AbstractArticle>> fn = document -> document.select("ul#results-content > li").stream()
-				.map(e -> e.select("h2 > a.titulo").attr("href"))
-				.map(url -> new GetSingleArticleCommand().execute(new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {}))
-				.collect(Collectors.toList());
+    private final Logger log = Logger.getLogger(Abc.class.getName());
 
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-		while (iterator.hasNext()) {
-			executor.submit(() -> {
-				for (AbstractArticle article : fn.apply(iterator.next())) {
-					articles.add(article);
-				}
-			});
+    @Override
+    public List<AbstractEntity> execute(UrlIterator iterator) {
+        List<AbstractEntity> articles = Collections.synchronizedList(new ArrayList<AbstractEntity>());
+        Function<Document, List<AbstractEntity>> fn = document -> document.select("ul#results-content > li").stream()
+                .map(e -> e.select("h2 > a.titulo").attr("href"))
+                .map(url -> new GetSingleArticleCommand().execute(new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {
+                }))
+                .collect(Collectors.toList());
+
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+        while (iterator.hasNext()) {
+            executor.submit(() -> {
+                for (AbstractEntity article : fn.apply(iterator.next())) {
+                    articles.add(article);
+                }
+            });
 		}
 
 		try {

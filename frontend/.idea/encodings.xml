@@ -2,6 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/../../stepping/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../tools/argsparser/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../tools/arithmetic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../tools/cli/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/extraction/src/main/java" charset="UTF-8" />

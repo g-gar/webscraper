@@ -12,32 +12,33 @@ import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
 
-import com.ggar.webscraper.core.AbstractArticle;
+import com.ggar.webscraper.core.AbstractEntity;
 import com.ggar.webscraper.core.PluginParams;
 import com.ggar.webscraper.plugins.elpais.ElPais;
 import com.ggar.webscraper.plugins.elpais.config.Operations;
 import com.ggar.webscraper.plugins.elpais.util.UrlIterator;
 
-public class GetMultipleArticleCommand implements Command<UrlIterator, List<AbstractArticle>> {
-	
-	private final Logger log = Logger.getLogger(ElPais.class.getName());
+public class GetMultipleArticleCommand implements Command<UrlIterator, List<AbstractEntity>> {
 
-	@Override
-	public List<AbstractArticle> execute(UrlIterator iterator) {
-		List<AbstractArticle> articles = Collections.synchronizedList(new ArrayList<AbstractArticle>());
-		Function<Document, List<AbstractArticle>> fn = document -> document.selectFirst("div#fusion-app").select("article").stream()
-				.map(e -> e.selectFirst("h2 > a").attr("abs:href"))
-				.filter(url -> url.trim().length() > 0)
-				.map(url -> new GetSingleArticleCommand().execute(new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {}))
-				.collect(Collectors.toList());
+    private final Logger log = Logger.getLogger(ElPais.class.getName());
 
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-		while (iterator.hasNext()) {
-			executor.submit(() -> {
-				for (AbstractArticle article : fn.apply(iterator.next())) {
-					articles.add(article);
-				}
-			});
+    @Override
+    public List<AbstractEntity> execute(UrlIterator iterator) {
+        List<AbstractEntity> articles = Collections.synchronizedList(new ArrayList<AbstractEntity>());
+        Function<Document, List<AbstractEntity>> fn = document -> document.selectFirst("div#fusion-app").select("article").stream()
+                .map(e -> e.selectFirst("h2 > a").attr("abs:href"))
+                .filter(url -> url.trim().length() > 0)
+                .map(url -> new GetSingleArticleCommand().execute(new PluginParams<Operations>(Operations.SINGLE_ARTICLE, url) {
+                }))
+                .collect(Collectors.toList());
+
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+        while (iterator.hasNext()) {
+            executor.submit(() -> {
+                for (AbstractEntity article : fn.apply(iterator.next())) {
+                    articles.add(article);
+                }
+            });
 		}
 		
 		try {

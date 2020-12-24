@@ -10,8 +10,6 @@ public class OutputConditionGroup extends MutuallyExclusiveConditionGroup {
     public OutputConditionGroup(GraphBuilder builder) {
         super('o');
         this.builder = builder;
-        this.addCondition(new JsonOutputCondition(this.builder));
-        this.addCondition(new TxtOutputCondition(this.builder));
     }
 
 }

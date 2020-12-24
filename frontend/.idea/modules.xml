@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../tools/argsparser/ArgsParser.iml" filepath="$PROJECT_DIR$/../../tools/argsparser/ArgsParser.iml" />
       <module fileurl="file://$PROJECT_DIR$/../plugins/abc/abc.iml" filepath="$PROJECT_DIR$/../plugins/abc/abc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/arithmetic/arithmetic.iml" filepath="$PROJECT_DIR$/../../tools/arithmetic/arithmetic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/cli/cli.iml" filepath="$PROJECT_DIR$/../../tools/cli/cli.iml" />
       <module fileurl="file://$PROJECT_DIR$/../core/core.iml" filepath="$PROJECT_DIR$/../core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/../plugins/elpais/elpais.iml" filepath="$PROJECT_DIR$/../plugins/elpais/elpais.iml" />
       <module fileurl="file://$PROJECT_DIR$/extraction/extraction.iml" filepath="$PROJECT_DIR$/extraction/extraction.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend.iml" filepath="$PROJECT_DIR$/frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/server/htp/htp.iml" filepath="$PROJECT_DIR$/../../tools/server/htp/htp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/server/killgrave/killgrave.iml" filepath="$PROJECT_DIR$/../../tools/server/killgrave/killgrave.iml" />
       <module fileurl="file://$PROJECT_DIR$/../plugins/plugins.iml" filepath="$PROJECT_DIR$/../plugins/plugins.iml" />
       <module fileurl="file://$PROJECT_DIR$/postprocessing/postprocessing.iml" filepath="$PROJECT_DIR$/postprocessing/postprocessing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/server/rest/rest.iml" filepath="$PROJECT_DIR$/../../tools/server/rest/rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/server/server.iml" filepath="$PROJECT_DIR$/../../tools/server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../stepping/stepping-core.iml" filepath="$PROJECT_DIR$/../../stepping/stepping-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tools/tools.iml" filepath="$PROJECT_DIR$/../../tools/tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/../plugins/veinteminutos/veinteminutos.iml" filepath="$PROJECT_DIR$/../plugins/veinteminutos/veinteminutos.iml" />
     </modules>
   </component>

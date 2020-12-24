@@ -7,29 +7,29 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.ggar.webscraper.core.AbstractArticle;
+import com.ggar.webscraper.core.AbstractEntity;
 import com.ggar.webscraper.core.PluginParams;
 import com.ggar.webscraper.core.util.HtmlUtils;
 import com.ggar.webscraper.plugins.abc.Abc;
 import com.ggar.webscraper.plugins.abc.config.Operations;
 import com.ggar.webscraper.plugins.abc.model.ArticleBuilder;
 
-public class GetSingleArticleCommand implements Command<PluginParams<Operations>, AbstractArticle> {
+public class GetSingleArticleCommand implements Command<PluginParams<Operations>, AbstractEntity> {
 
-	private final Logger log = Logger.getLogger(Abc.class.getName());
-	
-	@Override
-	public AbstractArticle execute(PluginParams<Operations> param) {
-		log.info(String.format("[%s] Extracting single article from %s\n", Thread.currentThread().getName(), param.getValue()));
-		String url = param.getValue(); 
-		Document document = null;
-		try {
-			document = Jsoup.connect(url).get();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		Elements metas = HtmlUtils.extractMetaTags(document);
+    private final Logger log = Logger.getLogger(Abc.class.getName());
+
+    @Override
+    public AbstractEntity execute(PluginParams<Operations> param) {
+        log.info(String.format("[%s] Extracting single article from %s\n", Thread.currentThread().getName(), param.getValue()));
+        String url = param.getValue();
+        Document document = null;
+        try {
+            document = Jsoup.connect(url).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        Elements metas = HtmlUtils.extractMetaTags(document);
 		ArticleBuilder builder = new ArticleBuilder();
 		
 		builder.setUrl(url);

@@ -2,23 +2,23 @@ package com.ggar.webscraper.core;
 
 import java.util.List;
 
-public abstract class AbstractArticle implements Article {
+public abstract class AbstractEntity implements Entity {
 
-	protected final String url, publishedDate, modifiedDate, title, summary, content, language, section;
-	protected final List<String> tags, authors;
-	
-	public AbstractArticle(String url, String publishedDate, String modifiedDate, String title, String summary,
-			String content, String language, String section, List<String> tags, List<String> authors) {
-		super();
-		this.url = url;
-		this.publishedDate = publishedDate;
-		this.modifiedDate = modifiedDate;
-		this.title = title;
-		this.summary = summary;
-		this.content = content;
-		this.language = language;
-		this.section = section;
-		this.tags = tags;
+    protected final String url, publishedDate, modifiedDate, title, summary, content, language, section;
+    protected final List<String> tags, authors;
+
+    public AbstractEntity(String url, String publishedDate, String modifiedDate, String title, String summary,
+                          String content, String language, String section, List<String> tags, List<String> authors) {
+        super();
+        this.url = url;
+        this.publishedDate = publishedDate;
+        this.modifiedDate = modifiedDate;
+        this.title = title;
+        this.summary = summary;
+        this.content = content;
+        this.language = language;
+        this.section = section;
+        this.tags = tags;
 		this.authors = authors;
 	}
 

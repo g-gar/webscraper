@@ -10,6 +10,5 @@ public class InputConditionGroup extends MutuallyExclusiveConditionGroup {
     public InputConditionGroup(GraphBuilder builder) {
         super('i');
         this.builder = builder;
-        this.addCondition(new CsvInputCondition(this.builder));
     }
 }
