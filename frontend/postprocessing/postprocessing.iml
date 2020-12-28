@@ -14,6 +14,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="core" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.13.1" level="project" />
+    <orderEntry type="module" module-name="veinteminutos" />
+    <orderEntry type="module" module-name="abc" />
+    <orderEntry type="module" module-name="elpais" />
     <orderEntry type="module" module-name="stepping-core" />
     <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:1.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.jheaps:jheaps:0.13" level="project" />

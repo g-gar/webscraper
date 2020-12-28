@@ -6,6 +6,7 @@ import com.ggar.tools.argsparser.ArgsParser;
 import com.ggar.webscraper.postprocessing.cli.CliOptions;
 import com.ggar.webscraper.postprocessing.cli.condition.input.CsvInputCondition;
 import com.ggar.webscraper.postprocessing.cli.condition.input.InputConditionGroup;
+import com.ggar.webscraper.postprocessing.cli.condition.input.ScrapeInputCondition;
 import com.ggar.webscraper.postprocessing.cli.condition.output.JsonOutputCondition;
 import com.ggar.webscraper.postprocessing.cli.condition.output.OutputConditionGroup;
 import com.ggar.webscraper.postprocessing.cli.condition.output.TxtOutputCondition;
@@ -34,10 +35,17 @@ public class Main {
                     .register(new OutputConditionGroup(builder)
                             .addCondition(new JsonOutputCondition(builder))
                             .addCondition(new TxtOutputCondition(builder))
-                    );
+                    )
+                    .register(new ScrapeInputCondition(builder));
 
-            parser.get('i');
-            parser.get('o');
+            String[] names = new String[]{"input", "scrape", "output"};
+            for (String name : names) {
+                try {
+                    parser.get(name);
+                } catch (Exception e) {
+                    App.log.info(String.format("Error: Condition with name [%s] not registered.\n Stacktrace: %s\n", name, e));
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

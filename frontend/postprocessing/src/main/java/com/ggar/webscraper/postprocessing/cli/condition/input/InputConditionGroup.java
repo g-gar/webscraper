@@ -8,7 +8,7 @@ public class InputConditionGroup extends MutuallyExclusiveConditionGroup {
     private final GraphBuilder builder;
 
     public InputConditionGroup(GraphBuilder builder) {
-        super('i');
+        super("input");
         this.builder = builder;
     }
 }

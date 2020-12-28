@@ -23,6 +23,21 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>com.ggar.uem.webscraper.plugins</groupId>
+            <artifactId>veinteminutos</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ggar.webscraper.plugins</groupId>
+            <artifactId>abc</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ggar.uem.webscraper</groupId>
+            <artifactId>elpais</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.ggar.stepping</groupId>
             <artifactId>stepping-core</artifactId>
             <version>1.0-SNAPSHOT</version>

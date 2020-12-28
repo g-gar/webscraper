@@ -1,19 +1,15 @@
 package com.ggar.webscraper.plugins.elpais;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.ggar.webscraper.core.AbstractEntity;
 import com.ggar.webscraper.core.Plugin;
 import com.ggar.webscraper.core.PluginParams;
-import com.ggar.webscraper.plugins.elpais.command.CanProcessRequestCommand;
-import com.ggar.webscraper.plugins.elpais.command.GenerateIteratorCommand;
-import com.ggar.webscraper.plugins.elpais.command.GetMultipleArticleCommand;
-import com.ggar.webscraper.plugins.elpais.command.GetSingleArticleCommand;
-import com.ggar.webscraper.plugins.elpais.command.GetUrlTemplateCommand;
+import com.ggar.webscraper.plugins.elpais.command.*;
 import com.ggar.webscraper.plugins.elpais.config.Operations;
 import com.ggar.webscraper.plugins.elpais.config.UrlTemplate;
 import com.ggar.webscraper.plugins.elpais.util.UrlIterator;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ElPais implements Plugin<PluginParams<Operations>, AbstractEntity, Operations> {
 

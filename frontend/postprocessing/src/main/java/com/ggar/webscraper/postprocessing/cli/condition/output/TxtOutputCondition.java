@@ -14,7 +14,7 @@ public class TxtOutputCondition extends SingleCondition {
     private final GraphBuilder builder;
 
     public TxtOutputCondition(GraphBuilder builder) {
-        super('t');
+        super("txt");
         this.builder = builder;
     }
 
