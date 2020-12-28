@@ -7,8 +7,6 @@
     <file url="file://$PROJECT_DIR$/../../tools/cli/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../core/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/extraction/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/extraction/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/postprocessing/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/postprocessing/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../plugins/abc/src/main/java" charset="UTF-8" />

@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/../../tools/cli/cli.iml" filepath="$PROJECT_DIR$/../../tools/cli/cli.iml" />
       <module fileurl="file://$PROJECT_DIR$/../core/core.iml" filepath="$PROJECT_DIR$/../core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/../plugins/elpais/elpais.iml" filepath="$PROJECT_DIR$/../plugins/elpais/elpais.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extraction/extraction.iml" filepath="$PROJECT_DIR$/extraction/extraction.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend.iml" filepath="$PROJECT_DIR$/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../tools/server/htp/htp.iml" filepath="$PROJECT_DIR$/../../tools/server/htp/htp.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../tools/server/killgrave/killgrave.iml" filepath="$PROJECT_DIR$/../../tools/server/killgrave/killgrave.iml" />

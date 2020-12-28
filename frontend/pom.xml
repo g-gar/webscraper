@@ -8,7 +8,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>extraction</module>
         <module>postprocessing</module>
     </modules>
 
