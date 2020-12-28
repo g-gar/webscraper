@@ -20,13 +20,52 @@ public class CliOptions extends Options {
                 .valueSeparator(' ')
                 .hasArgs()
                 .build());
-        group.addOption(Option.builder("s")
-                .longOpt("sqlite")
-                .desc("path to a sqlite database")
-                .valueSeparator(' ')
-                .hasArg()
-                .build());
+        /*group.addOption(Option.builder("s")
+                .longOpt("scrape")
+                .desc("Perform scraping at the beginning of execution")
+                .build());*/
         addOptionGroup(group);
+
+        /*OptionGroup sgroup = new OptionGroup();
+        sgroup.addOption(Option.builder()
+                .longOpt("elpais")
+                .desc("Scrape from elpais.com")
+                .build());
+        sgroup.addOption(Option.builder()
+                .longOpt("abc")
+                .desc("Scrape from abc.es")
+                .build());
+        sgroup.addOption(Option.builder()
+                .longOpt("20minutos")
+                .desc("Scrape from 20minutos.es")
+                .build());
+        addOptionGroup(sgroup);*/
+
+        addOption(Option.builder("s")
+                .longOpt("scrape")
+                .desc("Perform scraping at the beginning of execution")
+                .build());
+
+        addOption(Option.builder("ss")
+                .longOpt("source")
+                .desc("Scrape source")
+                .hasArg()
+                .valueSeparator(' ')
+                .build());
+
+        addOption(Option.builder("so")
+                .longOpt("operation")
+                .desc("Scrape operation type")
+                .hasArg()
+                .valueSeparator(' ')
+                .build());
+
+        addOption(Option.builder("sv")
+                .longOpt("value")
+                .desc("Scrape operation value")
+                .hasArg()
+                .valueSeparator(' ')
+                .build());
 
         addOption(Option.builder("o")
                 .longOpt("output")

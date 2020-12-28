@@ -10,7 +10,7 @@ public class App {
 
     private static App instance;
     private final GraphExecutor graphExecutor;
-    private final static Logger log = Logger.getGlobal();
+    public final static Logger log = Logger.getGlobal();
 
     public App() {
         this.graphExecutor = new GraphExecutor(new DefaultGraphExecutorStrategy());

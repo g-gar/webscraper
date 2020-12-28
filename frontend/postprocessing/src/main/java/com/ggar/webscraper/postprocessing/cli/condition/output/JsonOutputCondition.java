@@ -12,7 +12,7 @@ public class JsonOutputCondition extends SingleCondition {
     private final GraphBuilder builder;
 
     public JsonOutputCondition(GraphBuilder builder) {
-        super('j');
+        super("json");
         this.builder = builder;
     }
 

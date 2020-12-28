@@ -8,7 +8,7 @@ public class OutputConditionGroup extends MutuallyExclusiveConditionGroup {
     private final GraphBuilder builder;
 
     public OutputConditionGroup(GraphBuilder builder) {
-        super('o');
+        super("output");
         this.builder = builder;
     }
 

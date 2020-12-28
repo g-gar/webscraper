@@ -18,7 +18,7 @@ public class CsvInputCondition extends SingleCondition {
     private final GraphBuilder builder;
 
     public CsvInputCondition(GraphBuilder builder) {
-        super('c');
+        super("csv");
         this.builder = builder;
     }
 
