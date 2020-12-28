@@ -15,7 +15,6 @@
         <module name="killgrave" />
         <module name="ArgsParser" />
         <module name="arithmetic" />
-        <module name="extraction" />
         <module name="core" />
         <module name="stepping-core" />
         <module name="veinteminutos" />
