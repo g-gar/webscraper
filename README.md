@@ -27,3 +27,4 @@ Planned and possible future additions:
 * [Project Lombok](https://projectlombok.org/)
 * [Apache Maven](https://maven.apache.org/)
 * [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (Very probable future addition for data persistence)
+* [JWorkFlow](https://github.com/danielgerlag/jworkflow) (planned future addition)
