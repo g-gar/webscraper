@@ -1,19 +1,29 @@
 ```
-Warning: this project's current state migh be unsafe and generate some illegal issues. Use it responsibly.
+Disclaimer: this project's current state migh be unsafe and generate some legal issues.
+Use with caution and under your own risk.
 ```
 
 webscraper
 
 ## Abstract
 
-The *core* project contains the main definitions for how plugins should behave but they are mostly free to do what it's needed in order to maintain their own capabilities.
+Scrap any source to recover any kind of data over HTTP/HTTPS protocols.
 
-The initial plugins (20minutos, ABC and ElPais) are intended to iterate over a well defined list of URLs as a result of any search within the sites. And it's done pretty well and fast.
+It currently supports a limited number of sources, which are:
+* [abc](https://www.abc.es/): retrieves articles
+* [el pais](https://elpais.com/): retrieves articles
+* [20 minutos](https://www.20minutos.es/): retrieves articles
 
-So fast that it can be considered as a DDoS attack. TODO: log URLs not served because of this or any other reason for a manual inspection and posterior processing.
+Planned and possible future additions:
+* [twitter](https://twitter.com/): retrieves tweets (w/o Twitter API)
+* [netflix](https://www.netflix.com/): retrieves movies and series
+* [stackexchange](https://stackexchange.com/): retrieves questions w/o answers
 
-The *app* project shows a basic functionality where it reads & parses `com.ggar.webscrapper.core.PluginParams` from a CSV input and ouputs the generated results into another CSV file.
+## Frameworks & Tools:
 
-But it should be robust enough to design any other kind of application (e.g. a twitter or a Pixiv/Imgur scrapper).
-
-Plugins are automatically injected in the `com.ggar.webscrapper.core.PluginManager` thanks to [GitHub - bmc/javautil: org.clapper.util Java Utility Library](https://github.com/bmc/javautil) and their functionality will be documented in each respective project but, meanwhile, it's indicated in each `com.ggar.webscrapper.core.PluginUrlIterator` implementation.
+* [Google Guice](https://github.com/google/guice) with [AssistedInject](https://github.com/square/AssistedInject)
+* [jsoup](https://github.com/jhy/jsoup/)
+* [Selenium](https://github.com/SeleniumHQ/selenium)
+* [Project Lombok](https://projectlombok.org/)
+* [Apache Maven](https://maven.apache.org/)
+* [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (Very probable future addition for data persistence)
