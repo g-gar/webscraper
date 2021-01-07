@@ -23,7 +23,7 @@ Planned and possible future additions:
 
 * [Google Guice](https://github.com/google/guice) with [AssistedInject](https://github.com/square/AssistedInject)
 * [jsoup](https://github.com/jhy/jsoup/)
-* [Selenium](https://github.com/SeleniumHQ/selenium)
+* [Selenium](https://github.com/SeleniumHQ/selenium) (planned future addition)
 * [Project Lombok](https://projectlombok.org/)
 * [Apache Maven](https://maven.apache.org/)
 * [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (Very probable future addition for data persistence)
