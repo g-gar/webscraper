@@ -1,8 +1,6 @@
 package com.ggar.webscraper.plugins.elpais;
 
-import com.ggar.webscraper.extensions.jsoup.JsoupModule;
-import com.ggar.webscraper.interfaces.DownloadRegistry;
-import com.ggar.webscraper.interfaces.DownloaderService;
+import com.ggar.webscraper.interfaces.HttpService;
 import com.ggar.webscraper.interfaces.ExecutorService;
 import com.ggar.webscraper.interfaces.LoggerService;
 import com.ggar.webscraper.plugins.common.CommonPluginModule;
@@ -32,12 +30,12 @@ public class Module extends PrivateModule {
         requireBinding(LoggerService.class);
         requireBinding(ExecutorService.class);
 
-        install(new JsoupModule());
-        requireBinding(new Key<DownloadRegistry<Document>>(){});
-        requireBinding(new Key<DownloaderService<Document>>(){});
+//        install(new JsoupModule());
+//        requireBinding(new Key<DownloadRegistry<Document>>(){});
+        requireBinding(new Key<HttpService<Document>>(){});
 
         install(new CommonPluginModule());
-        requireBinding(com.ggar.webscraper.plugins.common.interfaces.CommandFactory.class);
+//        requireBinding(com.ggar.webscraper.plugins.common.interfaces.CommandFactory.class);
 
 //        Function<Connection, Connection>[] interceptors = new Function[this.interceptors.size()];
         bind(new TypeLiteral<Function<Connection, Connection>[]>(){}).toInstance(this.interceptors);

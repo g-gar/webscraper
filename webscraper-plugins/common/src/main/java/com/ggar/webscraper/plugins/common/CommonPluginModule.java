@@ -1,13 +1,14 @@
 package com.ggar.webscraper.plugins.common;
 
 import com.ggar.webscraper.interfaces.DownloadRegistry;
-import com.ggar.webscraper.interfaces.DownloaderService;
+import com.ggar.webscraper.interfaces.HttpService;
 import com.ggar.webscraper.plugins.common.command.FilterNodesFromDocument;
 import com.ggar.webscraper.plugins.common.command.GenerateIterator;
 import com.ggar.webscraper.plugins.common.command.GetMultipleDocuments;
 import com.ggar.webscraper.plugins.common.command.GetSingleDocument;
 import com.ggar.webscraper.plugins.common.interfaces.Command;
 import com.ggar.webscraper.plugins.common.interfaces.CommandFactory;
+import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.google.inject.PrivateModule;
 import com.google.inject.TypeLiteral;
@@ -18,12 +19,12 @@ import org.jsoup.select.Elements;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class CommonPluginModule extends PrivateModule {
+public class CommonPluginModule extends AbstractModule {
 	@Override
 	protected void configure() {
 
 		requireBinding(new Key<DownloadRegistry<Document>>(){});
-		requireBinding(new Key<DownloaderService<Document>>(){});
+		requireBinding(new Key<HttpService<Document>>(){});
 
 		install(new FactoryModuleBuilder()
 			.implement(new TypeLiteral<Command<Document>>(){}, GetSingleDocument.class)
@@ -32,6 +33,6 @@ public class CommonPluginModule extends PrivateModule {
 			.implement(new TypeLiteral<Command<Elements>>(){}, FilterNodesFromDocument.class)
 			.build(CommandFactory.class)
 		);
-		expose(CommandFactory.class);
+//		expose(CommandFactory.class);
 	}
 }

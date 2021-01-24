@@ -1,6 +1,6 @@
 package com.ggar.webscraper.plugins.common.command;
 
-import com.ggar.webscraper.interfaces.DownloaderService;
+import com.ggar.webscraper.interfaces.HttpService;
 import com.ggar.webscraper.interfaces.UrlTemplate;
 import com.ggar.webscraper.plugins.common.interfaces.Command;
 import com.ggar.webscraper.plugins.common.interfaces.InternalStateSupervisor;
@@ -23,11 +23,11 @@ public class GenerateIterator implements Command<Iterator<Document>>, Iterator<D
     @Getter private final Queue<Document> items;
     private final UrlTemplate template;
     @Getter private final String[] replacements;
-    private final DownloaderService<Document> service;
+    private final HttpService<Document> service;
     private final List<Function<GenerateIterator, Boolean>> stateCheckerFunctions;
 
     @AssistedInject
-    public GenerateIterator(DownloaderService<Document> service, @Assisted UrlTemplate template, @Assisted Integer offset, @Assisted String... replacements) {
+    public GenerateIterator(HttpService<Document> service, @Assisted UrlTemplate template, @Assisted Integer offset, @Assisted String... replacements) {
         this.service = service;
         this.template = template;
         this.replacements = replacements;
@@ -43,11 +43,14 @@ public class GenerateIterator implements Command<Iterator<Document>>, Iterator<D
 
     @Override @SneakyThrows(MalformedURLException.class)
     public boolean hasNext() {
+        Document document = null;
         if (this.checkCurrentState()) {
             URL url = new URL(String.format(this.template.get(replacements), this.counter.getAndIncrement()));
-            this.items.add(this.service.get(url));
+            if ((document = this.service.execute(url)) != null) {
+                this.items.add(document);
+            }
         }
-        return !this.items.isEmpty();
+        return document != null && !this.items.isEmpty();
     }
 
     @SneakyThrows(NoSuchElementException.class)

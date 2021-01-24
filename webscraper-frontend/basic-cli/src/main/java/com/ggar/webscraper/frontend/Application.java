@@ -1,12 +1,17 @@
 package com.ggar.webscraper.frontend;
 
-import com.ggar.webscraper.plugins.abc.Abc;
-import com.ggar.webscraper.plugins.abc.model.Article;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ggar.webscraper.plugins.elpais.ElPais;
 import com.ggar.webscraper.services.ThreadPoolExecutorService;
 import com.google.inject.Injector;
 import lombok.SneakyThrows;
 
-import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collection;
 
 public class Application {
 
@@ -26,10 +31,19 @@ public class Application {
 
 	@SneakyThrows
 	public void start() {
-		Abc abc = injector.getInstance(Abc.class);
-		Article article = abc.single(new URL("https://www.abc.es/internacional/abci-iran-captura-petrolero-corea-medio-tensiones-entre-paises-202101041606_noticia.html"));
-
-		int a = 0;
+		String section = "tecnologia";
+		int initialOffset = ElPais.INITIAL_INDEX;
+		int maxOffset = ElPais.INITIAL_INDEX + 10;
+		Collection<com.ggar.webscraper.plugins.elpais.model.Article> articles = injector.getInstance(ElPais.class).section(section, initialOffset, maxOffset);
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(articles);
+			String str = "C:/Users/ggarf/Desktop/UEM/UEM3/PROYECTO DE COMPUTACION I/2021-PC1/data/%_%s_%s-%s_%s.json";
+			Path path = Paths.get(str.format("elpais", section, initialOffset, maxOffset, "20210124"));
+			Files.write(path, json.getBytes(StandardCharsets.UTF_8));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void stop() {

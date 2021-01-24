@@ -23,12 +23,22 @@ public class ConvertDocumentToArticle implements Command<Article> {
     @Override
     public Article execute() {
         List<String> tags = new ArrayList<>();
+        List<String> authors = new ArrayList<>();
         Article.ArticleBuilder builder = Article.builder();
         for (Element meta : document.select("meta")) {
             if (meta.attributes().get("property") != "") {
                 switch (meta.attributes().get("property")) {
+                    case "article:tag":
+                        tags.add(meta.attr("content"));
+                        break;
+                    case "og:article:author":
+                        authors.add(meta.attr("content"));
+                        break;
                     case "og:title":
                         builder.title(meta.attr("content"));
+                        break;
+                    case "og:description":
+                        builder.summary(meta.attr("content"));
                         break;
                     case "article:section":
                         builder.section(meta.attr("content"));
@@ -45,19 +55,13 @@ public class ConvertDocumentToArticle implements Command<Article> {
                     case "lang":
                         builder.language(meta.attr("content"));
                         break;
-                    case "description":
-                        builder.summary(meta.attr("content"));
-                        break;
-                    case "article:tag":
-                        tags.add(meta.attr("content"));
-                        break;
                 }
             }
         }
         builder.url(document.location());
         builder.tags(tags);
-        builder.authors(document.select("footer.autores > span.autor > a.nombre").stream().map(Element::text).collect(Collectors.toList()));
-        builder.content(document.select("span.cuerpo-texto>h3, span.cuerpo-texto>aside.despiece, span.cuerpo-texto>p").text());
+        builder.authors(authors);
+        builder.content(document.select("div#fusion-app div.article_body").text());
         return builder.build();
     }
 }

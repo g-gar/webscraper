@@ -1,42 +1,47 @@
 package com.ggar.webscraper.extensions.jsoup.model;
 
-import com.ggar.webscraper.interfaces.DownloadRegistry;
-import com.ggar.webscraper.interfaces.DownloaderService;
-import com.ggar.webscraper.interfaces.ExecutorService;
-import com.ggar.webscraper.interfaces.LoggerService;
+import com.ggar.webscraper.interfaces.*;
+import com.ggar.webscraper.model.Interceptor;
 import com.google.inject.Inject;
 import lombok.SneakyThrows;
 import org.jsoup.Connection;
+import org.jsoup.helper.HttpConnection;
 import org.jsoup.nodes.Document;
 
 import java.net.URL;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Function;
 
-public class JsoupDownloadService implements DownloaderService<Document> {
+public class JsoupDownloadService implements HttpService<Document>, Interceptable<JsoupDownloadService, Connection> {
 
     @Inject private DownloadRegistry<Document> pages;
     @Inject private ExecutorService executor;
     @Inject private LoggerService logger;
-    @Inject private Function<Connection, Connection>[] interceptors;
+    private final List<Interceptor<Connection>> interceptors;
 
-    public JsoupDownloadService() {}
+    public JsoupDownloadService() {
+        this.interceptors = new LinkedList<>();
+    }
+
+    public HttpService<Document> registerInterceptors(Interceptor<Connection>... interceptors) {
+        this.interceptors.clear();
+        this.interceptors.addAll(Arrays.asList(interceptors));
+        return this;
+    }
 
     @SneakyThrows({TimeoutException.class, ExecutionException.class, InterruptedException.class})
     @Override
-    public Document get(URL url) {
+    public Document execute(URL url) {
         Document result = null;
         Future<Document> future = null;
         if (pages.containsKey(url)) {
-            result = pages.get(url);
+            result = pages.remove(url);
         } else {
-            future = executor.execute(new JsoupDownloadPageTask(url).registerConnectionInterceptors(interceptors));
+            future = executor.execute( new JsoupDownloadPageTask(url, interceptors) );
             pages.put(url, future.get(Integer.MAX_VALUE, TimeUnit.DAYS));
             result = pages.get(url);
         }
@@ -44,12 +49,12 @@ public class JsoupDownloadService implements DownloaderService<Document> {
     }
 
     @Override
-    public Collection<Document> get(Collection<URL> urls)  {
-        Set<Document> result = new HashSet<>();
-        for (URL url : urls) {
-            result.add(JsoupDownloadService.this.get(url));
-        }
-        return result;
+    public JsoupDownloadService registerInterceptor(Function<Connection, Connection>... interceptors) {
+        return null;
     }
 
+    @Override
+    public Connection intercept(Connection entity) {
+        return null;
+    }
 }

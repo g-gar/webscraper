@@ -1,6 +1,7 @@
 package com.ggar.webscraper.plugins.elpais.model;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.List;
@@ -11,12 +12,10 @@ public class FindArticleNodesFromListing implements Function<Document, Elements>
     @Override
     public Elements apply(Document document) {
         return new Elements() {{
-            List<Elements> list = document.select("ul#results-content > li").stream()
-                    .map(e -> e.select("h2 > a.titulo"))
+            List<Element> elements = document.selectFirst("div#fusion-app").select("article").stream()
+                    .map(e -> e.selectFirst("h2 > a"))
                     .collect(Collectors.toList());
-            for (Elements elements : list) {
-                addAll(elements);
-            }
+            addAll(elements);
         }};
     }
 }

@@ -1,6 +1,7 @@
 package com.ggar.webscraper.plugins.elpais;
 
 import com.ggar.webscraper.interfaces.Plugin;
+import com.ggar.webscraper.plugins.common.command.GenerateIterator;
 import com.ggar.webscraper.plugins.common.interfaces.Command;
 import com.ggar.webscraper.plugins.elpais.command.CommandFactory;
 import com.ggar.webscraper.plugins.elpais.model.Article;
@@ -11,6 +12,7 @@ import org.jsoup.nodes.Document;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ElPais implements Plugin {
@@ -30,8 +32,15 @@ public class ElPais implements Plugin {
 		return commandFactory.convert(document).execute();
 	}
 
-	public Collection<Article> section(String section) {
-		return commandFactory.getMultiple(commandFactory.getIterator(Templates.SECTION, ElPais.INITIAL_INDEX, section), new FindArticleNodesFromListing())
+	public Collection<Article> section(String section, Function<GenerateIterator, Boolean>... stateCheckerFunctions) {
+		return this.section(section, ElPais.INITIAL_INDEX, Integer.MAX_VALUE, stateCheckerFunctions);
+	}
+
+	public Collection<Article> section(String section, int initialOffset, int maxOffset, Function<GenerateIterator, Boolean>... stateCheckerFunctions) {
+		GenerateIterator iterator = commandFactory.getIterator(Templates.SECTION, initialOffset, section)
+			.setStateCheckerFunctions(stateCheckerFunctions)
+			.setStateCheckerFunctions(it -> it.getCounter().get() <= maxOffset);
+		return commandFactory.getMultiple(iterator, new FindArticleNodesFromListing())
 			.execute()
 			.stream()
 			.map(document -> commandFactory.convert(document).execute())

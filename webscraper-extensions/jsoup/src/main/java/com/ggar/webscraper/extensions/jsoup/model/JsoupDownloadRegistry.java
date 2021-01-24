@@ -44,7 +44,11 @@ public class JsoupDownloadRegistry implements DownloadRegistry<Document> {
 
 	@Override
 	public Document put(URL key, Document value) {
-		return registry.put(key, value);
+		Document result = null;
+		if (value != null) {
+			result = registry.put(key, value);
+		}
+		return result;
 	}
 
 	@Override
